@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<script>
+(function () {
+  var lang = localStorage.getItem("ece-docs-lang") || "fa";
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-fa="ساختمان داده‌ها | مستندات مهندسی کامپیوتر هرمزگان" data-en="Data Structures | Hormozgan ECE Docs">ساختمان داده‌ها</title>
+<link rel="icon" href="../../assets/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../../index.html">
+      <img src="../../assets/img/logo.jpg" alt="Hormozgan University logo">
+      <span data-fa="دانشکده مهندسی کامپیوتر" data-en="Faculty of Computer Engineering">دانشکده مهندسی کامپیوتر</span>
+    </a>
+    <nav class="main-nav">
+      <a href="../../index.html" data-fa="خانه" data-en="Home">خانه</a>
+      <a href="../../index.html#courses" data-fa="دروس" data-en="Courses">دروس</a>
+    </nav>
+    <button class="lang-toggle" type="button">EN</button>
+  </div>
+</header>
 
+<section class="course-header container">
+  <h1 data-fa="ساختمان داده‌ها" data-en="Data Structures">ساختمان داده‌ها</h1>
+</section>
+
+<main class="container">
+  <section class="section reveal">
+    <h2 data-fa="ویدیوها" data-en="Videos">ویدیوها</h2>
+    <div id="video-section-body"></div>
+  </section>
+
+  <section class="section reveal">
+    <h2 data-fa="جزوه و کتاب" data-en="Notes &amp; Books">جزوه و کتاب</h2>
+    <div id="notes-section-body"></div>
+  </section>
+
+  <section class="section reveal">
+    <h2 data-fa="تمارین" data-en="Exercises">تمارین</h2>
+    <div id="exercises-section-body"></div>
+  </section>
+
+  <section class="section reveal">
+    <h2 data-fa="کدها" data-en="Code">کدها</h2>
+    <div id="code-section-body"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span data-fa="دانشگاه هرمزگان — دانشکده مهندسی کامپیوتر" data-en="University of Hormozgan — Faculty of Computer Engineering">دانشگاه هرمزگان — دانشکده مهندسی کامپیوتر</span>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/course.js" defer></script>
+</body>
+</html>
