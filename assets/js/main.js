@@ -1,8 +1,27 @@
 (function () {
   var STORAGE_KEY = "ece-docs-lang";
+  var THEME_KEY = "ece-docs-theme";
 
   function currentLang() {
     return localStorage.getItem(STORAGE_KEY) || "fa";
+  }
+
+  function currentTheme() {
+    return localStorage.getItem(THEME_KEY) || "light";
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem(THEME_KEY, theme);
+  }
+
+  function initThemeToggle() {
+    applyTheme(currentTheme());
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyTheme(currentTheme() === "dark" ? "light" : "dark");
+      });
+    });
   }
 
   function applyLang(lang) {
@@ -31,7 +50,12 @@
   }
 
   function initReveal() {
-    var items = document.querySelectorAll(".reveal");
+    var items = document.querySelectorAll(".reveal:not([data-reveal-ready])");
+    items.forEach(function (el, index) {
+      el.dataset.revealReady = "1";
+      el.style.transitionDelay = (index % 6) * 70 + "ms";
+    });
+
     if (!("IntersectionObserver" in window) || items.length === 0) {
       items.forEach(function (el) { el.classList.add("is-visible"); });
       return;
@@ -48,6 +72,26 @@
       { threshold: 0.15 }
     );
     items.forEach(function (el) { observer.observe(el); });
+  }
+
+  function initScrollProgress() {
+    var bar = document.getElementById("scroll-progress");
+    if (!bar) return;
+    var ticking = false;
+    function update() {
+      var scrollTop = window.scrollY;
+      var height = document.documentElement.scrollHeight - window.innerHeight;
+      var ratio = height > 0 ? scrollTop / height : 0;
+      bar.style.width = Math.min(1, Math.max(0, ratio)) * 100 + "%";
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    });
+    update();
   }
 
   function initCourseGrid() {
@@ -85,8 +129,10 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    initThemeToggle();
     initLangToggle();
     initReveal();
     initCourseGrid();
+    initScrollProgress();
   });
 })();
